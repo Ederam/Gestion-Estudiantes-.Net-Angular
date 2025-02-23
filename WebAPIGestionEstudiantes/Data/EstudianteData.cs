@@ -40,7 +40,7 @@ namespace WebAPIGestionEstudiantes.Data
         }
 
         [Obsolete]
-        public async Task<Estudiante> Obtener(int Id)
+        public async Task<Estudiante> ObtenerEstudiante(int Id)
         {
             Estudiante objeto = new Estudiante();
 
