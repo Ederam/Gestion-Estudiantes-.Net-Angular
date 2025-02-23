@@ -42,7 +42,7 @@ namespace WebAPIGestionEstudiantes.Data
         [Obsolete]
         public async Task<Estudiante> ObtenerEstudiante(int Id)
         {
-            Estudiante objeto = new Estudiante();
+            Estudiante estudiante = new Estudiante();
 
             using (var con = new SqlConnection(conexion))
             {
@@ -55,15 +55,17 @@ namespace WebAPIGestionEstudiantes.Data
                 {
                     while (await reader.ReadAsync())
                     {
-                        objeto = new Estudiante
+                        estudiante = new Estudiante
                         {
+                            Id_Estudiante = Convert.ToInt32(reader["ID_ESTUDIANTE"]),
                             NombreCompleto = reader["NOMBRE_ESTUDIANTE"].ToString(),                            
-                            
+                            Materia = reader["MATERIA"].ToString(),
+                            Nombre_Profesor = reader["NOMBRE_PROFESOR"].ToString(),
                         };
                     }
                 }
             }
-            return objeto;
+            return estudiante;
         }
 
         [Obsolete]
@@ -74,11 +76,8 @@ namespace WebAPIGestionEstudiantes.Data
             using (var con = new SqlConnection(conexion))
             {
 
-                SqlCommand cmd = new SqlCommand("sp_crearEstudiante", con);
-                cmd.Parameters.AddWithValue("@NombreCompleto", Estudiante.NombreCompleto);
-                //cmd.Parameters.AddWithValue("@Correo", Estudiante.Correo);
-                //cmd.Parameters.AddWithValue("@Sueldo", Estudiante.Sueldo);
-                //cmd.Parameters.AddWithValue("@FechaContrato", Estudiante.FechaContrato);
+                SqlCommand cmd = new SqlCommand("SP_CREAR_ESTUDIANTE", con);
+                cmd.Parameters.AddWithValue("@NOMBRE_COMPLETO", Estudiante.NombreCompleto);
                 cmd.CommandType = CommandType.StoredProcedure;
                 try
                 {

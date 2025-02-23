@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 using WebAPIGestionEstudiantes.Data;
@@ -17,36 +18,41 @@ namespace WebAPIGestionEstudiantes.Controllers
             _estudianteData = estudianteData;
         }
 
+        
         [HttpGet]
-        public async Task<IActionResult> Lista()
+        [Route("ListarEstudiantes")]
+        public async Task<IActionResult> ListarEstudiantes()
         {
             List<Estudiante> Lista = await _estudianteData.Lista();
             return StatusCode(StatusCodes.Status200OK, Lista);
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> Obtener(int id)
+        [HttpGet("{id}")]        
+        public async Task<IActionResult> ObtenerEstudianteById(int id)
         {
             Estudiante estudiante = await _estudianteData.ObtenerEstudiante(id);
             return StatusCode(StatusCodes.Status200OK, estudiante);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Crear([FromBody] Estudiante objeto)
+        
+        [HttpPost]        
+        public async Task<IActionResult> CrearEstudiante([FromBody] Estudiante estudiante)
         {
-            bool respuesta = await _estudianteData.CrearEstudiante(objeto);
+            bool respuesta = await _estudianteData.CrearEstudiante(estudiante);
             return StatusCode(StatusCodes.Status200OK, new { isSuccess = respuesta });
         }
 
         [HttpPut]
-        public async Task<IActionResult> Editar([FromBody] Estudiante objeto)
+        //[Route("EditarEstudiante")]
+        public async Task<IActionResult> EditarEstudiante([FromBody] Estudiante objeto)
         {
             bool respuesta = await _estudianteData.EditarEstudiante(objeto);
             return StatusCode(StatusCodes.Status200OK, new { isSuccess = respuesta });
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Eliminar(int id)
+        //[Route("EliminarEstudiante")]
+        public async Task<IActionResult> EliminarEstudiante(int id)
         {
             bool respuesta = await _estudianteData.EliminarEstudiante(id);
             return StatusCode(StatusCodes.Status200OK, new { isSuccess = respuesta });
