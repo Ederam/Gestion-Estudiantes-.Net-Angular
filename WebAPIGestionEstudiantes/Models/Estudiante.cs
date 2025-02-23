@@ -2,7 +2,7 @@
 {
     public class Estudiante
     {
-        public int Id_Empleado { get; set; }
-        public string NombreCompleto { get; set; }
+        public int Id_Estudiante { get; set; }
+        public string? NombreCompleto { get; set; }
     }
 }
