@@ -18,7 +18,10 @@ namespace WebAPIGestionEstudiantes.Controllers
             _estudianteData = estudianteData;
         }
 
-        
+        /// <summary>
+        /// Funcion que devuelve el listado de estudaintes
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("ListarEstudiantes")]
         public async Task<IActionResult> ListarEstudiantes()
@@ -34,8 +37,9 @@ namespace WebAPIGestionEstudiantes.Controllers
             return StatusCode(StatusCodes.Status200OK, estudiante);
         }
 
-        
-        [HttpPost]        
+        [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> CrearEstudiante([FromBody] Estudiante estudiante)
         {
             bool respuesta = await _estudianteData.CrearEstudiante(estudiante);

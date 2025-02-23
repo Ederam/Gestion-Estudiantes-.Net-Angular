@@ -100,12 +100,9 @@ namespace WebAPIGestionEstudiantes.Data
             using (var con = new SqlConnection(conexion))
             {
 
-                SqlCommand cmd = new SqlCommand("sp_editarEstudiante", con);
-                cmd.Parameters.AddWithValue("@IdEstudiante", estudiante.Id_Estudiante);
-                cmd.Parameters.AddWithValue("@NombreCompleto", estudiante.NombreCompleto);
-                //cmd.Parameters.AddWithValue("@Correo", estudiante.Correo);
-                //cmd.Parameters.AddWithValue("@Sueldo", estudiante.Sueldo);
-                //cmd.Parameters.AddWithValue("@FechaContrato", estudiante.FechaContrato);
+                SqlCommand cmd = new SqlCommand("SP_EDITAR_ESTUDIANTE", con);
+                cmd.Parameters.AddWithValue("@ID_ESTUDIANTE", estudiante.Id_Estudiante);
+                cmd.Parameters.AddWithValue("@NOMBRE_ESTUDIANTE", estudiante.NombreCompleto);
                 cmd.CommandType = CommandType.StoredProcedure;
                 try
                 {
@@ -128,8 +125,8 @@ namespace WebAPIGestionEstudiantes.Data
             using (var con = new SqlConnection(conexion))
             {
 
-                SqlCommand cmd = new SqlCommand("sp_eliminarEstudiante", con);
-                cmd.Parameters.AddWithValue("@IdEstudiante", id);
+                SqlCommand cmd = new SqlCommand("SP_ELIMINAR_ESTUDIANTE", con);
+                cmd.Parameters.AddWithValue("@ID_ESTUDIANTE", id);
                 cmd.CommandType = CommandType.StoredProcedure;
                 try
                 {
