@@ -21,7 +21,7 @@ namespace WebAPIGestionEstudiantes.Data
             using (var con = new SqlConnection(conexion))
             {
                 await con.OpenAsync();
-                SqlCommand cmd = new SqlCommand("SP_CARGAR_ESTUDIANTE", con);
+                SqlCommand cmd = new SqlCommand("SP_ESTUDIANTES", con);
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 using (var reader = await cmd.ExecuteReaderAsync())
@@ -31,7 +31,7 @@ namespace WebAPIGestionEstudiantes.Data
                         lista.Add(new Estudiante
                         {
                             Id_Estudiante = Convert.ToInt32(reader["ID_ESTUDIANTE"]),
-                            NombreCompleto = reader["NOMBRE"].ToString()!,                            
+                            NombreCompleto = reader["NOMBRE_ESTUDIANTE"].ToString()!,                            
                         });
                     }
                 }
@@ -40,7 +40,7 @@ namespace WebAPIGestionEstudiantes.Data
         }
 
         [Obsolete]
-        public async Task<Estudiante> ObtenerEstudiante(int Id)
+        public async Task<Estudiante> ObtenerInformacionCompletaEstudiante(int Id)
         {
             Estudiante estudiante = new Estudiante();
 
@@ -61,6 +61,33 @@ namespace WebAPIGestionEstudiantes.Data
                             NombreCompleto = reader["NOMBRE_ESTUDIANTE"].ToString(),                            
                             Materia = reader["MATERIA"].ToString(),
                             Nombre_Profesor = reader["NOMBRE_PROFESOR"].ToString(),
+                        };
+                    }
+                }
+            }
+            return estudiante;
+        }
+
+        [Obsolete]
+        public async Task<Estudiante> ObtenerEstudianteById(int Id)
+        {
+            Estudiante estudiante = new Estudiante();
+
+            using (var con = new SqlConnection(conexion))
+            {
+                await con.OpenAsync();
+                SqlCommand cmd = new SqlCommand("SP_CARGAR_ESTUDIANTE", con);
+                cmd.Parameters.AddWithValue("@ID_ESTUDIANTE", Id);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                using (var reader = await cmd.ExecuteReaderAsync())
+                {
+                    while (await reader.ReadAsync())
+                    {
+                        estudiante = new Estudiante
+                        {
+                            Id_Estudiante = Convert.ToInt32(reader["ID_ESTUDIANTE"]),
+                            NombreCompleto = reader["NOMBRE_ESTUDIANTE"].ToString(),                            
                         };
                     }
                 }

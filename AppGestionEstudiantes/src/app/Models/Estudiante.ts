@@ -1,6 +1,6 @@
 export interface Estudiante {
-    Id_Estudiante: number,
-    NombreCompleto: string,
-    Materia: string,
-    Nombre_Profesor: string
+    id_Estudiante: number,
+    nombreCompleto: string,
+    materia: string,
+    nombre_Profesor: string
 }
