@@ -33,9 +33,16 @@ namespace WebAPIGestionEstudiantes.Controllers
         [HttpGet("{id}")]        
         public async Task<IActionResult> ObtenerEstudianteById(int id)
         {
-            Estudiante estudiante = await _estudianteData.ObtenerEstudiante(id);
+            Estudiante estudiante = await _estudianteData.ObtenerEstudianteById(id);
             return StatusCode(StatusCodes.Status200OK, estudiante);
         }
+
+        //[HttpGet("{id}")]
+        //public async Task<IActionResult> ObtenerMateriasXEstudianteById(int id)
+        //{
+        //    Estudiante estudiante = await _estudianteData.ObtenerMateriasXEstudiante(id);
+        //    return StatusCode(StatusCodes.Status200OK, estudiante);
+        //}
 
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
