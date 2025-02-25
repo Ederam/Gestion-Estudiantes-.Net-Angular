@@ -33,6 +33,7 @@ export class MateriasComponent {
   
   public listaEstudiantes:Estudiante[] = [];
   public materiasEstudiantes:Estudiante[] = [];
+  public cantMaterias = 0;
   //E.ID_ESTUDIANTE,E.NOMBRE NOMBRE_ESTUDIANTE,M.NOMBRE MATERIA, P.NOMBRE NOMBRE_PROFESOR 
   //public displayedColumns : string[] = ['id_Estudiante','nombreCompleto','accion'];
   public displayedColumns : string[] = ['id_Estudiante','nombreCompleto','materia','nombre_Profesor'];
@@ -41,6 +42,7 @@ export class MateriasComponent {
     this.estudianteServicio.listarEstudiantes().subscribe({
       next:(data)=>{
         if(data.length > 0){
+          this.cantMaterias = data.length;
           this.materiasEstudiantes = data;
         }
       },
@@ -68,6 +70,7 @@ export class MateriasComponent {
           // })
           
           if(data.length > 0){
+            this.cantMaterias = data.length;
             this.materiasEstudiantes = data;
           }
 
@@ -84,7 +87,13 @@ export class MateriasComponent {
   }
 
   nuevaClase(){
-    this.router.navigate(['/clase',0]);
+    if (this.materiasEstudiantes.length <3) {
+      this.router.navigate(['/clase',0]);  
+    }
+    else{
+      alert('El estudiante ya tiene 3 materias asignadas')
+    }
+    
   }
 
   //http://localhost:5190/api/Estudiante
