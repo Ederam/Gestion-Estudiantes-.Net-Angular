@@ -3,6 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { appsettings } from '../../Settings/appsetiings';
 import { Estudiante } from '../Models/Estudiante';
 import { ResponseApi } from '../Models/ResponseApi';
+import { Clase } from '../Models/Clase';
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +11,9 @@ import { ResponseApi } from '../Models/ResponseApi';
 export class EstudianteService {
 
 private http = inject(HttpClient);
-private apiUrl:string = appsettings.apiUrl+"Estudiante" 
-private apiUrlMateria:string = appsettings.apiUrl+"Materias" 
+private apiUrl:string = appsettings.apiUrl+"Estudiante"; 
+private apiUrlMateria:string = appsettings.apiUrl+"Materias";
+private apiUrlClases:string = appsettings.apiUrl+"Clase";
 
   constructor() { }
 
@@ -34,6 +36,10 @@ private apiUrlMateria:string = appsettings.apiUrl+"Materias"
     return this.http.post<ResponseApi>(this.apiUrl,estudiante);
   }
 
+  crearClase(clase:Clase){
+    return this.http.post<ResponseApi>(this.apiUrlClases,clase);
+  }
+
   //http://localhost:5190/api/Estudiante
   /* {
     "id_Estudiante": 4,
@@ -46,6 +52,10 @@ private apiUrlMateria:string = appsettings.apiUrl+"Materias"
 
   editarEstudiante(estudiante:Estudiante){
     return this.http.put<ResponseApi>(this.apiUrl,estudiante);
+  }
+
+  editarClase(clase:Clase){
+    return this.http.put<ResponseApi>(this.apiUrl,clase);
   }
 
   //http://localhost:5190/api/Estudiante/1005

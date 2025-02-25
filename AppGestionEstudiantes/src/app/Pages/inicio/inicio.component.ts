@@ -22,12 +22,12 @@ import { Router,RouterModule } from '@angular/router';
 })
 export class InicioComponent {
 
-  private empleadoServicio = inject(EstudianteService);
+  private estudianteServicio = inject(EstudianteService);
   public listaEstudiantes:Estudiante[] = [];
   public displayedColumns : string[] = ['id_Estudiante','nombreCompleto','accion'];
 
   obtenerListadoEstudiantes(){
-    this.empleadoServicio.listarEstudiantes().subscribe({
+    this.estudianteServicio.listarEstudiantes().subscribe({
       next:(data)=>{
         if(data.length > 0){
           this.listaEstudiantes = data;
@@ -54,7 +54,7 @@ export class InicioComponent {
   }
   eliminarEstudiante(estudiante:Estudiante){
     if(confirm("Desea eliminar el empleado " + estudiante.nombreCompleto)){
-      this.empleadoServicio.eliminarEstudiante(estudiante.id_Estudiante).subscribe({
+      this.estudianteServicio.eliminarEstudiante(estudiante.id_Estudiante).subscribe({
         next:(data)=>{
           // if(data.isSuccess){
             this.obtenerListadoEstudiantes();

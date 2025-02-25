@@ -3,6 +3,7 @@ import { EstudianteService } from '../../Services/estudiante.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { Estudiante } from '../../Models/Estudiante';
+
 import { MatMenuModule } from '@angular/material/menu';
 import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
@@ -83,7 +84,7 @@ export class MateriasComponent {
   }
 
   nuevaClase(){
-    this.router.navigate(['/estudiante',0]);
+    this.router.navigate(['/clase',0]);
   }
 
   //http://localhost:5190/api/Estudiante

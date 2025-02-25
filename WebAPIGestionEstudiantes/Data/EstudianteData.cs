@@ -153,6 +153,34 @@ namespace WebAPIGestionEstudiantes.Data
         }
 
         [Obsolete]
+        public async Task<bool> CrearClase(Clase Clase)
+        {
+            bool respuesta = true;
+
+            using (var con = new SqlConnection(conexion))
+            {
+
+                SqlCommand cmd = new SqlCommand("SP_CREAR_CLASE", con);
+                cmd.Parameters.AddWithValue("@IDMATERIA", Clase.idMateria);
+                cmd.Parameters.AddWithValue("@NOMBRECLASE", Clase.nombreClase);
+                cmd.Parameters.AddWithValue("@HORARIO", Clase.horarioClase);
+                cmd.Parameters.AddWithValue("@IDPROFESOR", Clase.idProfesor);
+                cmd.Parameters.AddWithValue("@IDESTUDIANTE", Clase.isEstudiante);
+                cmd.CommandType = CommandType.StoredProcedure;
+                try
+                {
+                    await con.OpenAsync();
+                    respuesta = await cmd.ExecuteNonQueryAsync() > 0 ? true : false;
+                }
+                catch
+                {
+                    respuesta = false;
+                }
+            }
+            return respuesta;
+        }
+
+        [Obsolete]
         public async Task<bool> EditarEstudiante(Estudiante estudiante)
         {
             bool respuesta = true;

@@ -1,1 +1,48 @@
-<p>clase works!</p>
+
+<!-- //INSERT INTO CLASES(ID_MATERIA,NOMBRE,HORARIO,ID_PROFESOR,ID_ESTUDIANTE) VALUES(5,'DIB1_D','DIURNO',3,1); -->
+<!-- idMateria: number,
+nombreClase: string,
+horarioClase: string,
+idProfesor: number,
+isEstudiante: number -->
+<div class="mat-elevation-z2" style="width: 30%; padding: 30px; margin: 50px auto; display: flex;justify-content: center;">
+    <form [formGroup]="formEstudiante">
+        <div class="flex">
+            <mat-form-field>
+                <mat-label>Código de Materia</mat-label>
+                <input matInput  formControlName="idMateria" [disabled]=true>
+              </mat-form-field>
+        </div>
+        <div class="flex">
+            <mat-form-field>
+                <mat-label>Nombre Clase</mat-label>
+                <input matInput  formControlName="nombreClase">
+              </mat-form-field>
+        </div>
+        <div class="flex">
+            <mat-form-field>
+                <mat-label>Tipo Horario</mat-label>
+                <input matInput  formControlName="horarioClase">
+              </mat-form-field>
+        </div>
+        <div class="flex">
+            <mat-form-field>
+                <mat-label>Codigo del Profesor</mat-label>
+                <input matInput  formControlName="idProfesor">
+              </mat-form-field>
+        </div>        
+        <div class="flex">
+            <mat-form-field>
+                <mat-label>Codigo Estudiante</mat-label>
+                <input matInput  formControlName="isEstudiante">
+              </mat-form-field>
+        </div>
+       
+        <div class="flex">
+            <button mat-flat-button color="primary" (click)="guardar()">Guardar</button>
+            <button mat-flat-button color="warn" (click)="volver()" style="margin-left: 8px;">Volver</button>
+        </div>
+
+    </form>
+
+</div>
