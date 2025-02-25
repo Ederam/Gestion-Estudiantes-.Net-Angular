@@ -29,7 +29,9 @@ export class EstudianteComponent implements OnInit {
     nombre_Profesor: [''],
   });
 
-  constructor(private router:Router){}
+  constructor(private router:Router){
+    
+  }
 
   ngOnInit(): void {
     if(this.idEstudiante != 0){
@@ -43,6 +45,7 @@ export class EstudianteComponent implements OnInit {
             nombre_Profesor: data.nombre_Profesor,
 
           })
+          // this.myForm.get('input1').disable({ onlySelf: true });
         },
         error:(err) =>{
           console.log(err.message)

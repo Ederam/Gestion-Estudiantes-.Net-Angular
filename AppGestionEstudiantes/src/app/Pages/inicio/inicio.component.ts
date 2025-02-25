@@ -1,5 +1,7 @@
 import { Component,inject } from '@angular/core';
 
+import {MatMenuModule} from '@angular/material/menu';
+import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatCardModule} from '@angular/material/card';
 import {MatTableModule} from '@angular/material/table';
 import {MatIconModule} from '@angular/material/icon';
@@ -8,13 +10,13 @@ import {MatButtonModule} from '@angular/material/button';
 
 import { Estudiante } from '../../Models/Estudiante';
 import { EstudianteService } from '../../Services/estudiante.service';
-import { Router } from '@angular/router';
+import { Router,RouterModule } from '@angular/router';
 
 
 @Component({
   selector: 'app-inicio',
   standalone: true,
-  imports: [MatCardModule,MatTableModule,MatIconModule,MatButtonModule],
+  imports: [MatMenuModule,MatCardModule,MatTableModule,MatIconModule,MatButtonModule,MatToolbarModule,RouterModule],
   templateUrl: './inicio.component.html',
   styleUrl: './inicio.component.css'
 })
@@ -65,5 +67,13 @@ export class InicioComponent {
         }
       })
     }
+  }
+
+  materiasEstudiante(estudiante:Estudiante){
+    this.router.navigate(['/materias',estudiante.id_Estudiante]);
+  }
+
+  materiaEstudiante(estudiante:Estudiante){
+    this.router.navigate(['/materias',estudiante.id_Estudiante]);
   }
 }

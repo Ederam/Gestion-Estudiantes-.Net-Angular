@@ -1,34 +1,24 @@
 <mat-toolbar color="primary">
     <span>Gestión de Estudiantes</span>
      <div class="spacer"></div>
-       <a mat-button routerLink="/estudiante">Estudiantes</a>
+       <a mat-button routerLink="">Estudiantes</a>
        <a mat-button routerLink="/materias">Materias</a>
        <a mat-button routerLink="/">Contact</a>
-</mat-toolbar> 
+   </mat-toolbar>
 
 
 
 <mat-card style="width: 70%; margin: 50px auto">
 
     <mat-card-header>
-        <mat-card-title><p>Estudiantes</p></mat-card-title>
+        <mat-card-title><p>Materias</p></mat-card-title>
     </mat-card-header>
     <mat-card-content>
-        <button mat-flat-button color="primary" (click)="nuevoEstudiante()">Nuevo Estudiante</button>
+        <button mat-flat-button color="primary" (click)="nuevoEstudiante()">Nueva Clase</button>
 
-        <table mat-table [dataSource]="listaEstudiantes" class="mat-elevation-z2" style="margin-top:20px">
+        <table mat-table [dataSource]="materiasEstudiantes" class="mat-elevation-z2" style="margin-top:20px">
 
-            <!--- Note that these columns can be defined in any order.
-                  The actual rendered columns are set as a property on the row definition" -->
-          
-            <!-- Position Column -->
-            <!-- 'Id_Estudiante','NombreCompleto','Materia','Nombre_Profesor' -->
-            <!-- ejemplo de repsuesta del servicio{
-                "id_Estudiante": 1,
-                "nombreCompleto": "CAMILO RAMIREZ",
-                "materia": null,
-                "nombre_Profesor": null
-              } -->
+            
             <ng-container matColumnDef="id_Estudiante">
                 <th mat-header-cell *matHeaderCellDef> Código del estudiante</th>
                 <td mat-cell *matCellDef="let element"> {{element.id_Estudiante}} </td>
@@ -38,7 +28,15 @@
               <th mat-header-cell *matHeaderCellDef> Nombre Completo del Estudiante</th>
               <td mat-cell *matCellDef="let element"> {{element.nombreCompleto}} </td>
             </ng-container>         
-           
+            <ng-container matColumnDef="materia">
+                <th mat-header-cell *matHeaderCellDef> Asignatura</th>
+                <td mat-cell *matCellDef="let element"> {{element.materia}} </td>
+              </ng-container> 
+              <ng-container matColumnDef="nombre_Profesor">
+                <th mat-header-cell *matHeaderCellDef> Profe</th>
+                <td mat-cell *matCellDef="let element"> {{element.nombre_Profesor}} </td>
+              </ng-container> 
+
             <ng-container matColumnDef="accion">
                 <th mat-header-cell *matHeaderCellDef> </th>
                 <td mat-cell *matCellDef="let element">
@@ -48,9 +46,6 @@
                       <button mat-icon-button color="warn" (click)="eliminarEstudiante(element)">
                         <mat-icon>delete</mat-icon>
                       </button>                      
-                      <!-- <button mat-flat-button (click)="materiasEstudiante(element)">Ver Materias</button>  -->
-                      <!-- <button mat-flat-button >Ver Materias</button> -->
-                      <!-- <a mat-button routerLink="/materias" (click)="materiasEstudiante(element)">Ver Materias</a> -->
                       <button mat-flat-button (click)="materiaEstudiante(element)">Ver Materias</button> 
                 </td>
               </ng-container>

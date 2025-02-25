@@ -1,6 +1,6 @@
-﻿using WebAPIGestionEstudiantes.Models;
-using System.Data;
+﻿using System.Data;
 using System.Data.SqlClient;
+using WebAPIGestionEstudiantes.Models;
 
 namespace WebAPIGestionEstudiantes.Data
 {
@@ -40,7 +40,7 @@ namespace WebAPIGestionEstudiantes.Data
         }
 
         [Obsolete]
-        public async Task<Estudiante> ObtenerInformacionCompletaEstudiante(int Id)
+        public async Task<Estudiante> ObtenerMateriasXEstudiante_Old(int Id)
         {
             Estudiante estudiante = new Estudiante();
 
@@ -67,6 +67,39 @@ namespace WebAPIGestionEstudiantes.Data
             }
             return estudiante;
         }
+
+        [Obsolete]
+        public async Task<List<Estudiante>> ObtenerMateriasXEstudiante(int Id)
+        {
+            Estudiante estudiante = new Estudiante();
+            List<Estudiante> lista = new List<Estudiante>();
+
+            using (var con = new SqlConnection(conexion))
+            {
+                await con.OpenAsync();
+                SqlCommand cmd = new SqlCommand("SP_CARGAR_MATERIAS_X_ESTUDIANTE", con);
+                cmd.Parameters.AddWithValue("@ID_ESTUDIANTE", Id);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                using (var reader = await cmd.ExecuteReaderAsync())
+                {
+                    while (await reader.ReadAsync())
+                    {
+                        lista.Add(new Estudiante
+                        {
+                            Id_Estudiante = Convert.ToInt32(reader["ID_ESTUDIANTE"]),
+                            NombreCompleto = reader["NOMBRE_ESTUDIANTE"].ToString(),
+                            Materia = reader["MATERIA"].ToString(),
+                            Nombre_Profesor = reader["NOMBRE_PROFESOR"].ToString(),
+                        });
+                        
+                    }
+                }
+            }
+            //return estudiante;
+            return lista;
+        }
+
 
         [Obsolete]
         public async Task<Estudiante> ObtenerEstudianteById(int Id)

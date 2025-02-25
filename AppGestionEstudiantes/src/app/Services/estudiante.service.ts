@@ -11,6 +11,7 @@ export class EstudianteService {
 
 private http = inject(HttpClient);
 private apiUrl:string = appsettings.apiUrl+"Estudiante" 
+private apiUrlMateria:string = appsettings.apiUrl+"Materias" 
 
   constructor() { }
 
@@ -52,4 +53,8 @@ private apiUrl:string = appsettings.apiUrl+"Estudiante"
     return this.http.delete<Estudiante[]>(`${this.apiUrl}/${id}`);
   }
 
+  //http://localhost:5190/api/Materias/1
+  obtenerMateriasXEstudianteById(id : number){
+    return this.http.get<Estudiante[]>(`${this.apiUrlMateria}/${id}`);
+  }
 }
