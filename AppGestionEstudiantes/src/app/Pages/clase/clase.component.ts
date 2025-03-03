@@ -7,12 +7,13 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { Clase } from '../../Models/Clase';
+import { NgFor } from '@angular/common';
 
 
 
 @Component({
   selector: 'app-clase',
-  imports: [MatFormFieldModule,MatInputModule,MatButtonModule,ReactiveFormsModule],
+  imports: [MatFormFieldModule,MatInputModule,MatButtonModule,ReactiveFormsModule,NgFor],
   templateUrl: './clase.component.html',
   styleUrl: './clase.component.css'
 })
@@ -21,6 +22,9 @@ export class ClaseComponent implements OnInit  {
 @Input('id') idEstudiante! : number;
   private estudianteServicio = inject(EstudianteService);
   public formBuild = inject(FormBuilder);
+  opciones: string[] =[];
+  materias=[{id:1, nombre: 'matematicas'}, {id:2, nombre: 'español'},{id:3, nombre: 'Inglés'}]
+  listaMaterias =['Seleccione', 'Español', 'Inglés', 'Historia', 'Pensamiento','Informática'];
 
   public formEstudiante:FormGroup = this.formBuild.group({
     // id_Estudiante: [''],

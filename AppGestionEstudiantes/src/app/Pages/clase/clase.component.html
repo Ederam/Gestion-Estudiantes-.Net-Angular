@@ -7,12 +7,30 @@ idProfesor: number,
 isEstudiante: number -->
 <div class="mat-elevation-z2" style="width: 30%; padding: 30px; margin: 50px auto; display: flex;justify-content: center;">
     <form [formGroup]="formEstudiante">
-        <div class="flex">
+        <!-- <div class="flex">
             <mat-form-field>
                 <mat-label>Código de Materia</mat-label>
                 <input matInput  formControlName="idMateria" [disabled]=true>
               </mat-form-field>
-        </div>
+        </div> -->
+        <div class="input-group mb-3">
+            <label class="input-group-text" for="inputGroupSelect01">Options</label>
+            <select class="form-select" id="inputGroupSelect01">
+              <option selected>Choose...</option>
+              <option value="1">One</option>
+              <option value="2">Two</option>
+              <option value="3">Three</option>
+            </select>
+          </div>
+        
+          <div class="input-group mb-3">
+            <label class="input-group-text" for="inputGroupSelect01">Materias</label>
+            <select class="custom-select" id="inputGroupSelect01">
+              <option  [value]="m" 
+              *ngFor="let m of listaMaterias; let i =index">{{m}}</option>              
+            </select>
+          </div>
+
         <div class="flex">
             <mat-form-field>
                 <mat-label>Nombre Clase</mat-label>

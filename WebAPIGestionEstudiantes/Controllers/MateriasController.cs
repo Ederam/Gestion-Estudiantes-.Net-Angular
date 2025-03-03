@@ -12,16 +12,20 @@ namespace WebAPIGestionEstudiantes.Controllers
     public class MateriasController : Controller
     {
         private readonly EstudianteData _estudianteData;
+        private readonly MateriaData _materiaData;
 
         public MateriasController(EstudianteData estudianteData)
         {
             _estudianteData = estudianteData;
         }
 
-        //public IActionResult Index()
-        //{
-        //    return View();
-        //}
+        [HttpGet]
+        [Route("ListarMaterias")]
+        public async Task<IActionResult> ListarMaterias()
+        {
+            List<Materia> Lista = await _materiaData.ListaMaterias();
+            return StatusCode(StatusCodes.Status200OK, Lista);
+        }
 
         [HttpGet("{id}")]
         ///http://localhost:5190/api/Materias/1

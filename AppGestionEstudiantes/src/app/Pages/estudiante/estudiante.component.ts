@@ -34,6 +34,8 @@ export class EstudianteComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    //this.formEstudiante.value.id_Estudiante.disable();
+    this.formEstudiante.controls['id_Estudiante'].disable();
     if(this.idEstudiante != 0){
       this.estudianteServicio.obtenerEstudianteById(this.idEstudiante).subscribe({
         next:(data: any) =>{
