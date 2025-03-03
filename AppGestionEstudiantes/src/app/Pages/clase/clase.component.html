@@ -13,24 +13,33 @@ isEstudiante: number -->
                 <input matInput  formControlName="idMateria" [disabled]=true>
               </mat-form-field>
         </div> -->
-        <div class="input-group mb-3">
-            <label class="input-group-text" for="inputGroupSelect01">Options</label>
-            <select class="form-select" id="inputGroupSelect01">
-              <option selected>Choose...</option>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
-            </select>
-          </div>
         
-          <div class="input-group mb-3">
+<!--         
+        <div class="flex">
+            <mat-form-field>
+                <mat-label>Materia</mat-label>
+                <select class="custom-select" formControlName="idMateria">
+                    <option  [value]="m" 
+                    *ngFor="let m of listaMaterias; let i =index">{{m}}</option>              
+                </select>   
+            </mat-form-field>            
+        </div> -->
+        <!-- <div class="flex">
+            <mat-form-field>
+                <mat-label>Nombre Clase</mat-label>
+                <select class="custom-select" formControlName="idMateria">
+                    <option  [value]="m" 
+                    *ngFor="let m of listaMaterias; let i =index">{{m}}</option>              
+                </select>
+              </mat-form-field>
+        </div> -->
+        <div class="input-group mb-3">
             <label class="input-group-text" for="inputGroupSelect01">Materias</label>
             <select class="custom-select" id="inputGroupSelect01">
               <option  [value]="m" 
               *ngFor="let m of listaMaterias; let i =index">{{m}}</option>              
             </select>
           </div>
-
         <div class="flex">
             <mat-form-field>
                 <mat-label>Nombre Clase</mat-label>

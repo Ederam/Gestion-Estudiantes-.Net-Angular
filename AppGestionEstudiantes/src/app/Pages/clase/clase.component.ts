@@ -62,6 +62,8 @@ export class ClaseComponent implements OnInit  {
           }
         })
       }
+      this.formEstudiante.value.idMateria = this.listaMaterias[1]; 
+      console.log(this.formEstudiante.value.idMateria);   
     }
   
     guardar_Old(){
