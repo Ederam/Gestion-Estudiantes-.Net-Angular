@@ -10,6 +10,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddSingleton<EstudianteData>();
+builder.Services.AddSingleton<MateriaData>();
 
 builder.Services.AddCors(options =>
 {

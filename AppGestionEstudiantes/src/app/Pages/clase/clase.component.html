@@ -37,7 +37,7 @@ isEstudiante: number -->
             <label class="input-group-text" for="inputGroupSelect01">Materias</label>
             <select class="custom-select" id="inputGroupSelect01">
               <option  [value]="m" 
-              *ngFor="let m of listaMaterias; let i =index">{{m}}</option>              
+              *ngFor="let m of materias; let i =index">{{m.nombre}}</option>              
             </select>
           </div>
         <div class="flex">

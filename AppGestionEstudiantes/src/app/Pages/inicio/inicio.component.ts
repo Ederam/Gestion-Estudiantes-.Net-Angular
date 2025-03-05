@@ -53,7 +53,7 @@ export class InicioComponent {
     this.router.navigate(['/estudiante',estudiante.id_Estudiante]);
   }
   eliminarEstudiante(estudiante:Estudiante){
-    if(confirm("Desea eliminar el empleado " + estudiante.nombreCompleto)){
+    if(confirm("Desea eliminar el estudiante " + estudiante.nombreCompleto)){
       this.estudianteServicio.eliminarEstudiante(estudiante.id_Estudiante).subscribe({
         next:(data)=>{
           // if(data.isSuccess){

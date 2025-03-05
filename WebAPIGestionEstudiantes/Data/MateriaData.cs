@@ -33,7 +33,7 @@ namespace WebAPIGestionEstudiantes.Data
                         {
                             Id_Materia = Convert.ToInt32(reader["ID_MATERIA"]),
                             NombreMateria = reader["NOMBRE"].ToString()!,
-                            Creaditos = Convert.ToInt32(reader["CREDITOS"]),
+                            Creditos = Convert.ToInt32(reader["CREDITOS"]),
                         });
                     }
                 }

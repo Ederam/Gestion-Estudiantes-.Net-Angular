@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 
 using WebAPIGestionEstudiantes.Data;
 using WebAPIGestionEstudiantes.Models;
@@ -9,16 +9,21 @@ namespace WebAPIGestionEstudiantes.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class MateriasController : Controller
+    public class MateriasController : ControllerBase
     {
-        private readonly EstudianteData _estudianteData;
-        private readonly MateriaData _materiaData;
 
-        public MateriasController(EstudianteData estudianteData)
+        private readonly MateriaData _materiaData;
+        //private readonly MateriaData _materiaData = new MateriaData();
+
+        public MateriasController(MateriaData materiaData)
         {
-            _estudianteData = estudianteData;
+            _materiaData = materiaData;
         }
 
+        /// <summary>
+        /// lista las materias existentes
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("ListarMaterias")]
         public async Task<IActionResult> ListarMaterias()
@@ -27,15 +32,8 @@ namespace WebAPIGestionEstudiantes.Controllers
             return StatusCode(StatusCodes.Status200OK, Lista);
         }
 
-        [HttpGet("{id}")]
-        ///http://localhost:5190/api/Materias/1
-        public async Task<IActionResult> ObtenerMateriasXEstudianteById(int id)
-        {
-            List<Estudiante> Lista = await _estudianteData.ObtenerMateriasXEstudiante(id);
-            return StatusCode(StatusCodes.Status200OK, Lista);
 
-            //Estudiante estudiante = await _estudianteData.ObtenerMateriasXEstudiante(id);
-            //return StatusCode(StatusCodes.Status200OK, estudiante);
-        }
+
+        
     }
 }

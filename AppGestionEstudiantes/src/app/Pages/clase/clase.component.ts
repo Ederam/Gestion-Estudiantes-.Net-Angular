@@ -8,6 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { Clase } from '../../Models/Clase';
 import { NgFor } from '@angular/common';
+import { ClaseInsert } from '../../Models/ClaseInsert';
 
 
 
@@ -23,8 +24,31 @@ export class ClaseComponent implements OnInit  {
   private estudianteServicio = inject(EstudianteService);
   public formBuild = inject(FormBuilder);
   opciones: string[] =[];
-  materias=[{id:1, nombre: 'matematicas'}, {id:2, nombre: 'español'},{id:3, nombre: 'Inglés'}]
+  materias=[
+    {
+      id:1, 
+      nombre: 'Seleccione',
+      creditos: 3
+    },
+    {
+      id:2,
+      nombre: 'matematicas',
+      creditos: 3
+    },
+    {
+      id:3, 
+      nombre: 'español',
+      creditos: 4
+    },
+    {
+      id:4, 
+      nombre: 'Inglés',
+      creditos: 5
+    }
+  ]
   listaMaterias =['Seleccione', 'Español', 'Inglés', 'Historia', 'Pensamiento','Informática'];
+  materia: ClaseInsert | undefined
+
 
   public formEstudiante:FormGroup = this.formBuild.group({
     // id_Estudiante: [''],
@@ -62,7 +86,7 @@ export class ClaseComponent implements OnInit  {
           }
         })
       }
-      this.formEstudiante.value.idMateria = this.listaMaterias[1]; 
+      this.formEstudiante.value.idMateria = this.materias[1].nombre; 
       console.log(this.formEstudiante.value.idMateria);   
     }
   
