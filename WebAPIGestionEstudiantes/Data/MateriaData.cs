@@ -41,5 +41,31 @@ namespace WebAPIGestionEstudiantes.Data
             return lista;
         }
 
+        [Obsolete]
+        public async Task<bool> CrearMateria(Materia Materia)
+        {
+            bool respuesta = true;
+
+            using (var con = new SqlConnection(conexion))
+            {
+
+                SqlCommand cmd = new SqlCommand("SP_CREAR_MATERIA", con);
+                cmd.Parameters.AddWithValue("@NOMBRE_MATERIA", Materia.NombreMateria);
+                cmd.Parameters.AddWithValue("@CREDITOS", Materia.Creditos);
+                cmd.Parameters.AddWithValue("@ID_PROFESOR", Materia.Id_Profesor);
+                cmd.CommandType = CommandType.StoredProcedure;
+                try
+                {
+                    await con.OpenAsync();
+                    respuesta = await cmd.ExecuteNonQueryAsync() > 0 ? true : false;
+                }
+                catch
+                {
+                    respuesta = false;
+                }
+            }
+            return respuesta;
+        }
+
     }
 }

@@ -38,4 +38,10 @@ export class MateriaService {
           console.log(msg)
           return msg;
         }
+
+  // http://localhost:5190/api/Estudiante/1
+    obtenerMateriaById(id : number){
+      return this.http.get<Materia[]>(`${this.apiUrl}/${id}`);
+    }
+
 }

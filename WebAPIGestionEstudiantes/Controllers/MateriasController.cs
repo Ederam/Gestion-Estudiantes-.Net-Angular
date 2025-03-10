@@ -32,8 +32,15 @@ namespace WebAPIGestionEstudiantes.Controllers
             return StatusCode(StatusCodes.Status200OK, Lista);
         }
 
+        [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> CrearMateria([FromBody] Materia materia)
+        {
+            bool respuesta = await _materiaData.CrearMateria(materia);
+            return StatusCode(StatusCodes.Status200OK, new { isSuccess = respuesta });
+        }
 
 
-        
     }
 }

@@ -4,7 +4,7 @@
       <mat-card-title><p>Materias</p></mat-card-title>
   </mat-card-header>
   <mat-card-content>
-      <!-- <button mat-flat-button color="primary" (click)="nuevoEstudiante()">Nuevo Estudiante</button> -->
+      <button mat-flat-button color="primary" (click)="nuevoMateria()">Nueva Materia</button>
 
       <table mat-table [dataSource]="listaMaterias" class="mat-elevation-z2" style="margin-top:20px">
 
@@ -40,4 +40,45 @@
           <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
   </mat-card-content>
+  <!-- formulario de Insercion -->
+   
+
+<!-- <div class="mat-elevation-z2" style="width: 30%; padding: 30px; margin: 50px auto; display: flex;justify-content: center;"> -->
+<!-- intento ocultar formulario -->
+<div class="mat-elevation-z2" style="width: 30%; padding: 30px; margin: 50px auto; display: none;justify-content: center;">
+  <form [formGroup]="formInserMateria">
+      <div class="flex">
+          <mat-form-field>
+              <mat-label>Código de Materia</mat-label>
+              <input matInput  formControlName="id_Materia_Insert">
+            </mat-form-field>
+      </div>
+      <div class="flex">
+          <mat-form-field>
+              <mat-label>Materia</mat-label>
+              <input matInput  formControlName="nombreMateriaInsert">
+            </mat-form-field>
+      </div>
+      <div class="flex">
+        <mat-form-field>
+            <mat-label>Créditos</mat-label>
+            <input matInput  formControlName="creditosInsert">
+          </mat-form-field>
+      </div>
+      <div class="flex">
+        <mat-form-field>
+            <mat-label>Código del profesor</mat-label>
+            <input matInput  formControlName="codigoProfesorInsert">
+          </mat-form-field>
+    </div>
+     
+      <div class="flex">
+          <button mat-flat-button color="primary" (click)="guardar()">Guardar</button>
+          <button mat-flat-button color="warn" (click)="volver()" style="margin-left: 8px;">Volver</button>
+      </div>
+
+  </form>
+
+</div>
+
 </mat-card>

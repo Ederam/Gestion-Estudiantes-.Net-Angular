@@ -34,6 +34,15 @@ export class MateriasComponent {
     creditos: [''],    
   });
 
+  public formInserMateria:FormGroup = this.formBuild.group({
+    id_Materia_Insert: [''],
+    nombreMateriaInsert: [''],
+    creditosInsert: [''],    
+    codigoProfesorInsert: [''],    
+  });
+  
+  // para insert
+  @Input('id') idMateria! : number;
   
   //public listaEstudiantes:Estudiante[] = [];
   public materiasEstudiantes:Estudiante[] = [];
@@ -73,12 +82,34 @@ export class MateriasComponent {
     this.cargarMaterias();
   }
 
-  // ngOnInit(): void {
-    
-  // }
+  ngOnInit(): void {
+    // this.formInserMateria.controls['id_Materia_Insert'].disable();
+    // if(this.idMateria != 0){
+    //   this.materiaservice.obtenerMateriaById(this.idMateria).subscribe({
+    //     next:(data: any) =>{
+    //       this.formInserMateria.patchValue({    
+    //         id_Materia_Insert: data.id_Materia,
+    //         nombreMateriaInsert: data.id_Estudiante,
+    //         creditosInsert: data.id_Estudiante,    
+    //         codigoProfesorInsert: data.id_Estudiante,    
+    //       })
+    //       // this.myForm.get('input1').disable({ onlySelf: true });
+    //     },
+    //     error:(err) =>{
+    //       console.log(err.message)
+    //     }
+    //   })
+    // }
+    //this.formInserMateria.disabled();
+    //this.formInserMateria = !this.formInserMateria;    
+  }
 
-  nuevoEstudiante(){
-    this.router.navigate(['/estudiante',0]);
+  //http://localhost:5190/api/Materias
+  nuevoMateria(){
+    //ocultar el formulario de la lista de materias
+    //this.formInserMateria.value.style.display = 'block';
+    //mostrar formulario de creacion de nueva materia
+    this.router.navigate(['/materias',0]);
   }
 
   nuevaClase(){
@@ -142,38 +173,39 @@ export class MateriasComponent {
 
   guardar(){
     const materia : Materia = {
-      id_Materia : this.formMaterias.value.id_Materia,
-      nombreMateria: this.formMaterias.value.nombreMateria,
-      creditos: this.formMaterias.value.creditos,      
+      id_Materia : this.idMateria,
+      nombreMateria: this.formInserMateria.value.nombreMateria,
+      creditos: this.formInserMateria.value.creditos,
+      id_profesor: this.formInserMateria.value.creditos,         
     }
   
-    // if(this.idEstudiante == 0){
-    //   this.materiaservice.crearMateria(materia).subscribe({
-    //     next:(data) =>{
-    //       if(data.isSuccess){
-    //         this.router.navigate(["/"]);
-    //       }else{
-    //         alert("Error al crear")
-    //       }
-    //     },
-    //     error:(err) =>{
-    //       console.log(err.message)
-    //     }
-    //   })
-    // }else{
-    //   this.materiaservice.editarMateria(materia).subscribe({
-    //     next:(data) =>{
-    //       if(data.isSuccess){
-    //         this.router.navigate(["/"]);
-    //       }else{
-    //         alert("Error al editar")
-    //       }
-    //     },
-    //     error:(err) =>{
-    //       console.log(err.message)
-    //     }
-    //   })
-    // }
+    if(this.idMateria == 0){
+      this.materiaservice.crearMateria(materia).subscribe({
+        next:(data) =>{
+          if(data.isSuccess){
+            this.router.navigate(["/"]);
+          }else{
+            alert("Error al crear")
+          }
+        },
+        error:(err) =>{
+          console.log(err.message)
+        }
+      })
+    }else{
+      this.materiaservice.editarMateria(materia).subscribe({
+        next:(data) =>{
+          if(data.isSuccess){
+            this.router.navigate(["/"]);
+          }else{
+            alert("Error al editar")
+          }
+        },
+        error:(err) =>{
+          console.log(err.message)
+        }
+      })
+    }
   
   
   }
