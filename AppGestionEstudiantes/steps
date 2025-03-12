@@ -1,0 +1,32 @@
+
+scripts ejecutados anteriormente
+instalacion de Angular
+npm install -g @angular/cli
+
+Creacion de proyecto
+ng new AppGestionEstudiantes
+
+agregar Material
+ng add @angular/material@17.3.3
+ng add @angular/material
+
+generacion de servicio por linea de comandos
+ng generate service Services/Empleado
+ng generate service Services/Materia
+
+crear componentes para las paginas
+ng g c Pages/Inicio --skip-tests
+ng g c Pages/Estudiante --skip-tests
+ng g c Pages/navbar --skip-tests
+ng g c Pages/profesores --skip-tests
+ng g c Pages/materias --skip-tests
+ng g c Pages/clase --skip-tests
+
+
+creacion de componente para el footer
+ng g c Pages/footer --skip-tests
+
+ng g c Pages/materiasEstudiante --skip-tests
+
+se agrega modulo para poder ilustrar materias por estudiante
+

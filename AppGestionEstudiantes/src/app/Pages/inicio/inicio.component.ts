@@ -73,7 +73,12 @@ export class InicioComponent {
     this.router.navigate(['/materias',estudiante.id_Estudiante]);
   }
 
-  materiaEstudiante(estudiante:Estudiante){
+  materiaEstudiante_old(estudiante:Estudiante){
     this.router.navigate(['/materias',estudiante.id_Estudiante]);
   }
+
+  materiaEstudiante(estudiante:Estudiante){
+    this.router.navigate(['/materiasEstudiante',estudiante.id_Estudiante]);
+  }
+
 }
