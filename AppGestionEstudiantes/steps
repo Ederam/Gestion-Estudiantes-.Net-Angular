@@ -30,3 +30,5 @@ ng g c Pages/materiasEstudiante --skip-tests
 
 se agrega modulo para poder ilustrar materias por estudiante
 
+git commit -m "Ultimos ajustes presentacion"
+
