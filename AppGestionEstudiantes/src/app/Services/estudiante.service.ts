@@ -64,7 +64,12 @@ private apiUrlClases:string = appsettings.apiUrl+"Clase";
   }
 
   //http://localhost:5190/api/Materias/1
-  obtenerMateriasXEstudianteById(id : number){
+  obtenerMateriasXEstudianteById_Old(id : number){
     return this.http.get<Estudiante[]>(`${this.apiUrlMateria}/${id}`);
+  }
+
+  //http://localhost:5190/api/Estudiante/ObtenerMateriasXEstudianteById/1
+  obtenerMateriasXEstudianteById(id : number){
+    return this.http.get<Estudiante[]>(`${this.apiUrl}/ObtenerMateriasXEstudianteById/${id}`);
   }
 }

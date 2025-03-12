@@ -34,9 +34,11 @@ export class MateriasEstudianteComponent {
   public listaEstudiantes:Estudiante[] = [];
   public materiasEstudiantes:Estudiante[] = [];
   public cantMaterias = 0;
+  public NombreEstudiante='SIN NOMBRE';
   //E.ID_ESTUDIANTE,E.NOMBRE NOMBRE_ESTUDIANTE,M.NOMBRE MATERIA, P.NOMBRE NOMBRE_PROFESOR 
   //public displayedColumns : string[] = ['id_Estudiante','nombreCompleto','accion'];
-  public displayedColumns : string[] = ['id_Estudiante','nombreCompleto','materia','nombre_Profesor'];
+  //public displayedColumns : string[] = ['id_Estudiante','nombreCompleto','materia','nombre_Profesor'];
+  public displayedColumns : string[] = ['materia','nombre_Profesor'];
 
   obtenerListadoEstudiantes(){
     this.estudianteServicio.listarEstudiantes().subscribe({
@@ -62,16 +64,11 @@ export class MateriasEstudianteComponent {
     if(this.idEstudiante != 0){
       this.estudianteServicio.obtenerMateriasXEstudianteById(this.idEstudiante).subscribe({
         next:(data: any) =>{
-          // this.formEstudiante.patchValue({    
-          //   id_Estudiante: data.id_Estudiante,
-          //   nombreCompleto: data.nombreCompleto,
-          //   materia: data.materia,
-          //   nombre_Profesor: data.nombre_Profesor,
-          // })
           
           if(data.length > 0){
             this.cantMaterias = data.length;
             this.materiasEstudiantes = data;
+            this.NombreEstudiante = data[0].nombreCompleto;
           }
 
         },
@@ -145,5 +142,9 @@ export class MateriasEstudianteComponent {
         }
       })
     }
+  }
+
+  volver(){
+    this.router.navigate(["/"]);
   }
 }

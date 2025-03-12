@@ -30,19 +30,20 @@ namespace WebAPIGestionEstudiantes.Controllers
             return StatusCode(StatusCodes.Status200OK, Lista);
         }
 
-        [HttpGet("{id}")]        
+        [HttpGet("ObtenerEstudianteById/{id}")]        
         public async Task<IActionResult> ObtenerEstudianteById(int id)
         {
             Estudiante estudiante = await _estudianteData.ObtenerEstudianteById(id);
             return StatusCode(StatusCodes.Status200OK, estudiante);
         }
 
-        //[HttpGet("{id}")]
-        //public async Task<IActionResult> ObtenerMateriasXEstudianteById(int id)
-        //{
-        //    Estudiante estudiante = await _materiaData.ObtenerMateriasXEstudiante(id);
-        //    return StatusCode(StatusCodes.Status200OK, estudiante);
-        //}
+        //http://localhost:5190/api/Estudiante/ObtenerMateriasXEstudianteById/1'
+        [HttpGet("ObtenerMateriasXEstudianteById/{id}")]
+        public async Task<IActionResult> ObtenerMateriasXEstudianteById(int id)
+        {
+            List<Estudiante> estudiante = await _estudianteData.ObtenerMateriasXEstudiante(id);            
+            return StatusCode(StatusCodes.Status200OK, estudiante);
+        }
 
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
