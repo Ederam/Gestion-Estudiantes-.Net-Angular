@@ -70,6 +70,13 @@ export class MateriasEstudianteComponent {
             this.materiasEstudiantes = data;
             this.NombreEstudiante = data[0].nombreCompleto;
           }
+          else{
+            //mensaje que el estudiante no tiene materias asignadas
+            alert('El estudiante no tiene materias asignadas')
+            if(confirm("Desea crear mataeria para el estudiante ")){
+            }
+            //preguntar si desea crear materia ahora
+          }
 
         },
         error:(err: { message: any; }) =>{

@@ -50,6 +50,7 @@ export class InicioComponent {
 
   //http://localhost:5190/api/Estudiante
   editarEstudiante(estudiante:Estudiante){
+    //this.router.navigate(['/estudiante',estudiante.id_Estudiante]);
     this.router.navigate(['/estudiante',estudiante.id_Estudiante]);
   }
   eliminarEstudiante(estudiante:Estudiante){

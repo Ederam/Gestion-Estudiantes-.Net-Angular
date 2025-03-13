@@ -23,8 +23,12 @@ private apiUrlClases:string = appsettings.apiUrl+"Clase";
   }
 
   // http://localhost:5190/api/Estudiante/1
-  obtenerEstudianteById(id : number){
+  obtenerEstudianteById_Old(id : number){
     return this.http.get<Estudiante[]>(`${this.apiUrl}/${id}`);
+  }
+
+  obtenerEstudianteById(id : number){
+    return this.http.get<Estudiante[]>(`${this.apiUrl}/ObtenerEstudianteById/${id}`);
   }
 
   // http://localhost:5190/api/Estudiante
@@ -65,7 +69,7 @@ private apiUrlClases:string = appsettings.apiUrl+"Clase";
 
   //http://localhost:5190/api/Materias/1
   obtenerMateriasXEstudianteById_Old(id : number){
-    return this.http.get<Estudiante[]>(`${this.apiUrlMateria}/${id}`);
+    return this.http.get<Estudiante[]>(`${this.apiUrlMateria}/ObtenerEstudianteById/${id}`);//ObtenerEstudianteById
   }
 
   //http://localhost:5190/api/Estudiante/ObtenerMateriasXEstudianteById/1
