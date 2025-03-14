@@ -200,10 +200,17 @@ export class ClaseComponent implements OnInit  {
      addOptions(domElement: HTMLElement | null, array: string[]) {
       var select = document.getElementById("provincias"); //Seleccionamos el select
     
-    for(var i=0; i < array.length; i++){ 
-        var option = document.createElement("option"); //Creamos la opcion
-        option.innerHTML = array[i]; //Metemos el texto en la opción
-        select.appendChild(option); //Metemos la opción en el select
-    }
+    // for(var i=0; i < array.length; i++){ 
+    //     var option = document.createElement("option"); //Creamos la opcion
+    //     option.innerHTML = array[i]; //Metemos el texto en la opción
+    //     select.appendChild(option); //Metemos la opción en el select
+    // }
      }
+
+     insertMateria(categoryName:string){
+      // const selectElement = document.getElementById("inputGroupSelect01");
+      // let htmlToInsert = `<option> ${categoryName} `
+     }
+
+
 }
