@@ -117,7 +117,8 @@ export class MateriasComponent {
       this.router.navigate(['/clase',0]);  
     }
     else{
-      alert('El estudiante ya tiene 3 materias asignadas')
+      //alert('El estudiante ya tiene 3 materias asignadas');
+      alert("Buenos días\nAcabas de entrar en mi página\nEspero que te guste");
     }
     
   }

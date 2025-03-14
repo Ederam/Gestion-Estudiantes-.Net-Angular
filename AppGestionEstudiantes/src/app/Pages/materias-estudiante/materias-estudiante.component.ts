@@ -11,9 +11,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
+import { NgxToastNotifierModule } from 'ngx-toast-notifier';
+
 @Component({
   selector: 'app-materias-estudiante',
-  imports: [MatMenuModule,MatCardModule,MatTableModule,MatIconModule,MatButtonModule,MatToolbarModule,RouterModule],
+  imports: [MatMenuModule,MatCardModule,MatTableModule,MatIconModule,MatButtonModule,MatToolbarModule,RouterModule,NgxToastNotifierModule],
   templateUrl: './materias-estudiante.component.html',
   styleUrl: './materias-estudiante.component.css'
 })
@@ -91,11 +93,15 @@ export class MateriasEstudianteComponent {
   }
 
   nuevaClase(){
-    if (this.materiasEstudiantes.length <3) {
+    if (this.materiasEstudiantes.length < 3 ) {
+      console.log('desea crear nueva clase para el estudiante tal?');
       this.router.navigate(['/clase',0]);  
     }
     else{
-      alert('El estudiante ya tiene 3 materias asignadas')
+      alert('El estudiante ya tiene 3 materias asignadas');
+      //alert("Buenas buenas\nValidando saltos de léa\nEspero que te guste");
+      // window.alert("Bienvenido a nuestro sitio web");
+      // swal("Oops!", "Something went wrong on the page!", "error");//pendiente implementacion
     }
     
   }

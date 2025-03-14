@@ -64,13 +64,17 @@ export class ClaseComponent implements OnInit  {
   });
 
   constructor(private router:Router){
-    
+    this.cargarMaterias();
   }
 
   ngOnInit(): void {
+    console.log('codigo de estudiante', this.idEstudiante );
+      
       if(this.idEstudiante != 0){
         this.estudianteServicio.obtenerEstudianteById(this.idEstudiante).subscribe({
           next:(data: any) =>{
+            console.log('data devuelta ' ,data);
+            
             this.formEstudiante.patchValue({    
   
               id_Estudiante: data.id_Estudiante,
@@ -81,13 +85,14 @@ export class ClaseComponent implements OnInit  {
             })
             // this.myForm.get('input1').disable({ onlySelf: true });
           },
-          error:(err) =>{
+          error:(err) =>{            
             console.log(err.message)
           }
         })
       }
-      this.formEstudiante.value.idMateria = this.materias[1].nombre; 
-      console.log(this.formEstudiante.value.idMateria);   
+      //cargar las materias en un select
+      // this.formEstudiante.value.idMateria = this.materias[1].nombre; 
+      // console.log(this.formEstudiante.value.idMateria);   
     }
   
     guardar_Old(){
@@ -175,4 +180,30 @@ export class ClaseComponent implements OnInit  {
     volver(){
       this.router.navigate(["/"]);
     }
+
+    cargarMaterias(){
+      
+    var materias = document.getElementById("inputGroupSelect01");
+    for(var i=0;i < this.listaMaterias.length; i++){ 
+      this.formEstudiante.value.inputGroupSelect01.Option[i] = new Option(this.listaMaterias[i]);
+      //inputGroupSelect01.options[i] = new option(listaMaterias[i]);
+     }
+    }
+
+    cargar_provincias() {      
+      // Ordena el Array Alfabeticamente, es muy facil ;)):
+      this.listaMaterias.sort();
+     
+      this.addOptions("inputGroupSelect01", this.listaMaterias);
+     }
+
+     addOptions(domElement: HTMLElement | null, array: string[]) {
+      var select = document.getElementById("provincias"); //Seleccionamos el select
+    
+    for(var i=0; i < array.length; i++){ 
+        var option = document.createElement("option"); //Creamos la opcion
+        option.innerHTML = array[i]; //Metemos el texto en la opción
+        select.appendChild(option); //Metemos la opción en el select
+    }
+     }
 }

@@ -32,3 +32,12 @@ se agrega modulo para poder ilustrar materias por estudiante
 
 git commit -m "Ultimos ajustes presentacion"
 
+Uso de libreria para integrar notificaciones
+npm install ngx-toast-notifier --save
+no lo instalo en su primer intento, se le va a agregar --force para probar
+npm install ngx-toast-notifier --save --force
+
+la pagina sugiere instalar
+npm install @angular/animations --save --force
+
+
