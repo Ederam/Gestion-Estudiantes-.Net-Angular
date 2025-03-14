@@ -32,12 +32,34 @@ namespace WebAPIGestionEstudiantes.Controllers
             return StatusCode(StatusCodes.Status200OK, Lista);
         }
 
+        [HttpGet]
+        [Route("infoMaterias")]
+        public async Task<IActionResult> infoMaterias()
+        {
+            List<Materia> Lista = await _materiaData.infoMaterias();
+            return StatusCode(StatusCodes.Status200OK, Lista);
+        }
+
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> CrearMateria([FromBody] Materia materia)
         {
             bool respuesta = await _materiaData.CrearMateria(materia);
+            return StatusCode(StatusCodes.Status200OK, new { isSuccess = respuesta });
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> EditarMateria([FromBody] Materia objeto)
+        {
+            bool respuesta = await _materiaData.EditarMateria(objeto);
+            return StatusCode(StatusCodes.Status200OK, new { isSuccess = respuesta });
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> EliminarMateria(int id)
+        {
+            bool respuesta = await _materiaData.EliminarMateria(id);
             return StatusCode(StatusCodes.Status200OK, new { isSuccess = respuesta });
         }
 

@@ -6,7 +6,7 @@
         public string NombreMateria { get; set; }
         public int? Creditos { get; set; }
         public int? Id_Profesor { get; set; }
-
+        public string? NombreProfesor { get; set; }
 
     }
 }

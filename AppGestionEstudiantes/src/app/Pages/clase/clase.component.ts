@@ -14,7 +14,7 @@ import { ClaseInsert } from '../../Models/ClaseInsert';
 
 @Component({
   selector: 'app-clase',
-  imports: [MatFormFieldModule,MatInputModule,MatButtonModule,ReactiveFormsModule,NgFor],
+  imports: [MatFormFieldModule,MatInputModule,MatButtonModule,ReactiveFormsModule],
   templateUrl: './clase.component.html',
   styleUrl: './clase.component.css'
 })
@@ -194,7 +194,7 @@ export class ClaseComponent implements OnInit  {
       // Ordena el Array Alfabeticamente, es muy facil ;)):
       this.listaMaterias.sort();
      
-      this.addOptions("inputGroupSelect01", this.listaMaterias);
+      //this.addOptions("inputGroupSelect01", this.listaMaterias);
      }
 
      addOptions(domElement: HTMLElement | null, array: string[]) {

@@ -11,6 +11,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddSingleton<EstudianteData>();
 builder.Services.AddSingleton<MateriaData>();
+builder.Services.AddSingleton<ProfesorData>();
 
 builder.Services.AddCors(options =>
 {
