@@ -1,0 +1,8 @@
+﻿Error: conumiendo metodo de servicio en swagger o postman
+Dscripcion:error al implementar en un nuevo controller una consulta
+ERROR: System.InvalidOperationException: Unable to resolve service for type 
+'WebAPIGestionEstudiantes.Data.MateriaData' while attempting to activate 'WebAPIGestionEstudiantes.Controllers.MateriasController'
+SOLUCION: 
+falataba agregar en la clase principal del servicio 'Program.cs' 
+una instancia singleton para la clase que implementa el controlador
+builder.Services.AddSingleton<MateriaData>();

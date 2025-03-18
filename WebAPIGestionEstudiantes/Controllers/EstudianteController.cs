@@ -30,10 +30,18 @@ namespace WebAPIGestionEstudiantes.Controllers
             return StatusCode(StatusCodes.Status200OK, Lista);
         }
 
-        [HttpGet("{id}")]        
+        [HttpGet("ObtenerEstudianteById/{id}")]        
         public async Task<IActionResult> ObtenerEstudianteById(int id)
         {
-            Estudiante estudiante = await _estudianteData.ObtenerEstudiante(id);
+            Estudiante estudiante = await _estudianteData.ObtenerEstudianteById(id);
+            return StatusCode(StatusCodes.Status200OK, estudiante);
+        }
+
+        //http://localhost:5190/api/Estudiante/ObtenerMateriasXEstudianteById/1'
+        [HttpGet("ObtenerMateriasXEstudianteById/{id}")]
+        public async Task<IActionResult> ObtenerMateriasXEstudianteById(int id)
+        {
+            List<Estudiante> estudiante = await _estudianteData.ObtenerMateriasXEstudiante(id);            
             return StatusCode(StatusCodes.Status200OK, estudiante);
         }
 
@@ -60,6 +68,19 @@ namespace WebAPIGestionEstudiantes.Controllers
         {
             bool respuesta = await _estudianteData.EliminarEstudiante(id);
             return StatusCode(StatusCodes.Status200OK, new { isSuccess = respuesta });
+        }
+
+        /**
+         * 
+         * Metodos que deben ir en un controlador diferente
+         */
+
+
+        [HttpGet]
+        public async Task<IActionResult> ListarMaterias()
+        {
+            List<Materia> Lista = await _estudianteData.ListaMaterias();
+            return StatusCode(StatusCodes.Status200OK, Lista);
         }
     }
 }
